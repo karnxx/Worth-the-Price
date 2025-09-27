@@ -183,3 +183,11 @@ func sac_roll():
 func sac_color():
 	get_node('Camera2D/guid/ColorRect').visible = true
 	SacManager.add_sac(SacManager.basic_sac, "greyscale_vision")
+
+func sac_eyesight1():
+	get_node('Camera2D/guid/vigin1').visible = true
+	SacManager.add_sac(SacManager.basic_sac, "viginette1")
+
+func sac_eyesight2():
+	get_node('Camera2D/guid/vigin2').visible = true
+	SacManager.add_sac(SacManager.adv_sac, "viginette2")

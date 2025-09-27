@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b58bqp6ko1aqj"]
+[gd_scene load_steps=14 format=3 uid="uid://b58bqp6ko1aqj"]
 
 [ext_resource type="Script" uid="uid://endk4umaam1t" path="res://scene/uis/guid.gd" id="1_hv570"]
 [ext_resource type="Shader" uid="uid://4a531e7ql6ba" path="res://scene/uis/guid.gdshader" id="2_4f0y2"]
@@ -16,14 +16,31 @@ bg_color = Color(1, 0, 0.117647, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_njy4k"]
 shader = ExtResource("2_4f0y2")
 
+[sub_resource type="Gradient" id="Gradient_njy4k"]
+offsets = PackedFloat32Array(0, 0.876623)
+colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bp2xg"]
+gradient = SubResource("Gradient_njy4k")
+fill = 1
+fill_from = Vector2(0.53211, 0.449541)
+
 [sub_resource type="Gradient" id="Gradient_4f0y2"]
-offsets = PackedFloat32Array(0, 0.331169, 0.941558)
+offsets = PackedFloat32Array(0, 0.331169, 0.655844)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_njy4k"]
 gradient = SubResource("Gradient_4f0y2")
 fill = 1
 fill_from = Vector2(0.490826, 0.495413)
+
+[sub_resource type="Gradient" id="Gradient_bp2xg"]
+colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sni5a"]
+gradient = SubResource("Gradient_bp2xg")
+fill = 1
+fill_from = Vector2(0.513761, 0.509174)
 
 [node name="guid" type="CanvasLayer"]
 script = ExtResource("1_hv570")
@@ -71,15 +88,27 @@ offset_top = 3.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_njy4k")
+texture = SubResource("GradientTexture2D_bp2xg")
 
 [node name="vigin2" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 3.0
-offset_bottom = 1.0
+offset_left = -7.0
+offset_top = -4.0
+offset_right = 9.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_njy4k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("GradientTexture2D_sni5a")
