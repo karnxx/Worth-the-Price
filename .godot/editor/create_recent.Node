@@ -1,2 +1,12 @@
 Node2D
+CharacterBody2D
+MeshInstance3D
+TileMap
+GridMap
+StaticBody3D
+CSGBox3D
+Camera3D
+CollisionShape3D
+CharacterBody3D
+AnimatedSprite3D
 Sprite2D

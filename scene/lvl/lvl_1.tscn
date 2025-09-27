@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://dx5v8mh75mjuj"]
+[gd_scene load_steps=2 format=3 uid="uid://dx5v8mh75mjuj"]
+
+[ext_resource type="PackedScene" uid="uid://vrghinlw6gon" path="res://scene/char/plr/plr.tscn" id="1_uanbu"]
 
 [node name="lvl1" type="Node2D"]
+
+[node name="plr" parent="." instance=ExtResource("1_uanbu")]
+texture_filter = 1
+position = Vector2(0, 0.3753)

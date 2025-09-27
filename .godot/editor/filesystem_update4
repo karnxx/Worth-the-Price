@@ -1,3 +1,5 @@
-res://assets/scenes/intro.tscn
 res://scene/char/plr/plr.tscn
-res://assets/scenes/plr.tscn
+res://scene/char/plr/plr.gd
+res://scene/lvl/lvl_1.tscn
+res://addons/godot_super-wakatime/wakatime.cfg
+res://scene/char/plr/plr.tres
