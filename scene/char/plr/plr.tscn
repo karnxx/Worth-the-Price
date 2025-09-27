@@ -180,9 +180,7 @@ script = ExtResource("1_8bfwx")
 [node name="animate" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = ExtResource("2_evpjb")
-animation = &"slash_left"
-frame = 4
-frame_progress = 1.0
+animation = &"crack"
 
 [node name="animate2" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

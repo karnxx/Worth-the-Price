@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-res://scene/scipts
-=======
-res://scene/char/enemies
-res://assets/char/enemy/fireball_guy
->>>>>>> 58deb31 (temporary save before pulling)
-res://scene/uis
 res://assets/char/plr/Character
+res://scene/scipts
+res://scene/uis
 res://assets/char/plr/Weapon
 res://scene/lvl
 res://scene/char/plr

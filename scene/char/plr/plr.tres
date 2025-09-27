@@ -1,5 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=128 format=3 uid="uid://ovq3ws86nq7"]
+[gd_resource type="SpriteFrames" load_steps=130 format=3 uid="uid://ovq3ws86nq7"]
 
+[ext_resource type="Texture2D" uid="uid://3q2migs22dm6" path="res://assets/char/plr/Character/crackedsprite.png" id="1_dxgct"]
 [ext_resource type="Texture2D" uid="uid://layjhmwne1ux" path="res://assets/char/plr/Character/Character_DownLeft.png" id="1_je6sm"]
 [ext_resource type="Texture2D" uid="uid://bppenantky82u" path="res://assets/char/plr/Character/down.png" id="1_uf0rv"]
 [ext_resource type="Texture2D" uid="uid://b70nihlcq1dcb" path="res://assets/char/plr/Character/Character_Down.png" id="2_pj2yt"]
@@ -27,6 +28,10 @@
 [ext_resource type="Texture2D" uid="uid://dlnetkerg6s3d" path="res://assets/char/plr/Character/slash_down.png" id="14_kw20t"]
 [ext_resource type="Texture2D" uid="uid://ck476e0qbm5ja" path="res://assets/char/plr/Character/slashleft.png" id="15_dxgct"]
 [ext_resource type="Texture2D" uid="uid://2mw3moy5mj34" path="res://assets/char/plr/Character/slashright.png" id="16_w8upm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twl1p"]
+atlas = ExtResource("1_dxgct")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_koa6f"]
 atlas = ExtResource("1_uf0rv")
@@ -430,6 +435,14 @@ region = Rect2(96, 0, 32, 32)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twl1p")
+}],
+"loop": true,
+"name": &"crack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_koa6f")

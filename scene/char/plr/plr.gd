@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-
+var caniframe := true
 @export var health: int = 100
 @export var stm: int = 50
-@export var dmg: int = 10
+@export var dmg: int = 30
 @export var speed: float = 150.0
 @export var roll_dis: int = 100
+@export var time_between_atk := 0.5
 var facing
 var current_health
 var current_stm
@@ -18,7 +19,8 @@ var is_rolling:= false
 var is_moving:= false
 var is_attacking := false
 var can_move :=true
-var movement_lag = 0
+var movement_lag = 0.0
+var crackedsprite = true
 func _ready():
 	current_health = health
 	current_stm = stm
@@ -42,11 +44,15 @@ func _physics_process(_delta: float) -> void:
 			playidle()
 		is_moving = false
 	if Input.is_action_just_pressed("roll") and not is_rolling and able_to_roll:
+		if movement_lag != 0:
+			await get_tree().create_timer(movement_lag).timeout
 		is_rolling = true
 		await roll(last_dir)
 		is_rolling = false
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("accept"):
 		if not is_rolling and not is_attacking:
+			if movement_lag != 0:
+				await get_tree().create_timer(movement_lag).timeout
 			sword_slash()
 	move_and_slide()
 
@@ -57,66 +63,75 @@ func _process(_delta: float) -> void:
 	get_node('Camera2D/guid').maxstm = stm
 
 func playwalk(dir) -> void:
-	if dir.x > 0 and dir.y == 0:
-		$animate.play("walk_right")
-		facing = "right"
-	elif dir.x < 0 and dir.y == 0:
-		$animate.play("walk_left")
-		facing = "left"
-	elif dir.y < 0 and dir.x == 0:
-		$animate.play("walk_up")
-		facing = "up"
-	elif dir.y > 0 and dir.x == 0:
-		$animate.play("walk_down")
-		facing = "down"
-	elif dir.x > 0 and dir.y < 0:
-		$animate.play("walk_topright")
-		facing = "topright"
-	elif dir.x < 0 and dir.y < 0:
-		$animate.play("walk_topleft")
-		facing = "topleft"
-	elif dir.x > 0 and dir.y > 0:
-		$animate.play("wawlk_bottomright")
-		facing = "bottomright"
-	elif dir.x < 0 and dir.y > 0:
-		$animate.play("walk_bottomleft")
-		facing = "bottomleft"
+	if crackedsprite:
+		$animate.play("crack")
+	else:
+		if dir.x > 0 and dir.y == 0:
+			$animate.play("walk_right")
+			facing = "right"
+		elif dir.x < 0 and dir.y == 0:
+			$animate.play("walk_left")
+			facing = "left"
+		elif dir.y < 0 and dir.x == 0:
+			$animate.play("walk_up")
+			facing = "up"
+		elif dir.y > 0 and dir.x == 0:
+			$animate.play("walk_down")
+			facing = "down"
+		elif dir.x > 0 and dir.y < 0:
+			$animate.play("walk_topright")
+			facing = "topright"
+		elif dir.x < 0 and dir.y < 0:
+			$animate.play("walk_topleft")
+			facing = "topleft"
+		elif dir.x > 0 and dir.y > 0:
+			$animate.play("wawlk_bottomright")
+			facing = "bottomright"
+		elif dir.x < 0 and dir.y > 0:
+			$animate.play("walk_bottomleft")
+			facing = "bottomleft"
 
 func playidle() -> void:
-	if facing == "right":
-		$animate.play("right_idle")
-	elif facing == "left":
-		$animate.play("left_idle")
-	elif facing == "up":
-		$animate.play("up_idle")
-	elif facing == "down":
-		$animate.play("down_idle")
-	elif facing == "topright":
-		$animate.play("upright_idle")
-	elif facing == "topleft":
-		$animate.play("upleft_idle")
-	elif facing == "bottomright":
-		$animate.play("downright_idle")
-	elif facing == "bottomleft":
-		$animate.play("downleft_idle")
+	if crackedsprite:
+		$animate.play("crack")
+	else:
+		if facing == "right":
+			$animate.play("right_idle")
+		elif facing == "left":
+			$animate.play("left_idle")
+		elif facing == "up":
+			$animate.play("up_idle")
+		elif facing == "down":
+			$animate.play("down_idle")
+		elif facing == "topright":
+			$animate.play("upright_idle")
+		elif facing == "topleft":
+			$animate.play("upleft_idle")
+		elif facing == "bottomright":
+			$animate.play("downright_idle")
+		elif facing == "bottomleft":
+			$animate.play("downleft_idle")
 
 func playrol(dir) -> void:
-	if dir.x > 0 and dir.y == 0:
-		$animate.play("roll_right")
-	elif dir.x < 0 and dir.y == 0:
-		$animate.play("roll_left")
-	elif dir.y < 0 and dir.x == 0:
-		$animate.play("roll_up")
-	elif dir.y > 0 and dir.x == 0:
-		$animate.play("roll_down")
-	elif dir.x > 0 and dir.y < 0:
-		$animate.play("roll_upright")
-	elif dir.x < 0 and dir.y < 0:
-		$animate.play("roll_upleft")
-	elif dir.x > 0 and dir.y > 0:
-		$animate.play("roll_downright")
-	elif dir.x < 0 and dir.y > 0:
-		$animate.play("roll_downleft")
+	if crackedsprite:
+		$animate.play("crack")
+	else:
+		if dir.x > 0 and dir.y == 0:
+			$animate.play("roll_right")
+		elif dir.x < 0 and dir.y == 0:
+			$animate.play("roll_left")
+		elif dir.y < 0 and dir.x == 0:
+			$animate.play("roll_up")
+		elif dir.y > 0 and dir.x == 0:
+			$animate.play("roll_down")
+		elif dir.x > 0 and dir.y < 0:
+			$animate.play("roll_upright")
+		elif dir.x < 0 and dir.y < 0:
+			$animate.play("roll_upleft")
+		elif dir.x > 0 and dir.y > 0:
+			$animate.play("roll_downright")
+		elif dir.x < 0 and dir.y > 0:
+			$animate.play("roll_downleft")
 
 func roll(dir) -> void:
 	can_move =false
@@ -130,7 +145,10 @@ func sword_slash():
 	can_move = false
 	$animate2.visible = true
 	if facing == "up" or facing =="topright":
-		$animate.play("slash_up")
+		if crackedsprite:
+			$animate.play("crack")
+		else:
+			$animate.play("slash_up")
 		$animate2.play("up")
 		var colliders = [$attack/up,$attack/right,$attack/topright]
 		is_attacking = true
@@ -139,7 +157,10 @@ func sword_slash():
 				if i.get_collider().has_method('get_dmged'):
 					i.get_collider().get_dmged(current_dmg)
 	elif facing == "down" or facing =="bottomleft":
-		$animate.play("slash_down")
+		if crackedsprite:
+			$animate.play("crack")
+		else:
+			$animate.play("slash_down")
 		$animate2.play("down")
 		is_attacking = true
 		var colliders = [$attack/left,$attack/bottomleft,$attack/down]
@@ -148,7 +169,10 @@ func sword_slash():
 				if i.get_collider().has_method('get_dmged'):
 					i.get_collider().get_dmged(current_dmg)
 	elif facing == "right" or facing =="bottomright":
-		$animate.play("slash_right")
+		if crackedsprite:
+			$animate.play("crack")
+		else:
+			$animate.play("slash_right")
 		$animate2.play("right")
 		is_attacking = true
 		var colliders = [$attack/down,$attack/bottomright,$attack/right]
@@ -157,7 +181,10 @@ func sword_slash():
 				if i.get_collider().has_method('get_dmged'):
 					i.get_collider().get_dmged(current_dmg)
 	elif facing == "left" or facing =="topleft":
-		$animate.play("slash_left")
+		if crackedsprite:
+			$animate.play("crack")
+		else:
+			$animate.play("slash_left")
 		$animate2.play("left")
 		is_attacking = true
 		var colliders = [$attack/up,$attack/topleft,$attack/left]
@@ -169,6 +196,7 @@ func sword_slash():
 	is_attacking = false
 	$animate2.visible = false
 	can_move = true
+	await get_tree().create_timer(time_between_atk).timeout
 
 func sac_healthui():
 	get_node('Camera2D/guid/HBoxContainer/health').visible = false
@@ -218,6 +246,34 @@ func sac_max_health70():
 	health -= 70
 	SacManager.add_sac(SacManager.super_sac, "max_health_-70")
 
-func sac_movement_lag():
+func sac_movement_lag05s():
+	movement_lag = 0.5
+	SacManager.add_sac(SacManager.adv_sac, "sac_movement_lag")
+
+func sac_movement_lag1s():
 	movement_lag = 1
-	SacManager.add_sac(SacManager.super_sac, "max_health_-70")
+	SacManager.add_sac(SacManager.adv_sac, "sac_movement_lag")
+
+func get_dmged(dmg):
+	if not is_rolling and caniframe:
+		current_health -= dmg
+
+func sac_iframes():
+	caniframe = false
+	SacManager.add_sac(SacManager.adv_sac, "sac_iframes")
+
+func sac_dmg10():
+	current_dmg -= 10
+	SacManager.add_sac(SacManager.adv_sac, "sac_dmg_10")
+
+func sac_speed():
+	speed -= 50
+	SacManager.add_sac(SacManager.inter_sac, "sac_speed")
+
+func sac_timebetweenatk():
+	time_between_atk += 0.1
+	SacManager.add_sac(SacManager.inter_sac, "swingcd")
+
+func sac_plrsprite():
+	crackedsprite = true
+	SacManager.add_sac(SacManager.inter_sac, "plr_sprt")
