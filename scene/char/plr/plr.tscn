@@ -282,11 +282,10 @@ radius = 9.0
 
 [node name="plr" type="CharacterBody2D"]
 script = ExtResource("1_8bfwx")
-speed = null
 
 [node name="animate" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8m0g4")
-animation = &"wawlk_bottomright"
+animation = &"walk_bottomleft"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iivyv")
