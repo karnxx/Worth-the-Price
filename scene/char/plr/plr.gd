@@ -7,7 +7,7 @@ var caniframe := true
 @export var speed: float = 150.0
 @export var roll_dis: int = 100
 @export var time_between_atk := 0.5
-
+var is_enemy = false
 var facing
 var stm_loss := stm / 3.5
 var current_health
@@ -152,63 +152,59 @@ func roll(dir) -> void:
 	is_rolling = false
 
 func sword_slash():
+	if is_attacking:
+		return
+	
 	can_move = false
 	velocity = Vector2.ZERO
+	is_attacking = true
 	$animate2.visible = true
-	if facing == "up" or facing =="topright":
-		if crackedsprite:
-			$animate.play("crack")
-		else:
-			$animate.play("slash_up")
-		$animate2.play("up")
-		var colliders = [$attack/up,$attack/right,$attack/topright]
-		is_attacking = true
-		for i in colliders:
-			if i.is_colliding():
-				if i.get_collider().has_method('get_dmged'):
-					i.get_collider().get_dmged(current_dmg)
-	elif facing == "down" or facing =="bottomleft":
-		if crackedsprite:
-			$animate.play("crack")
-		else:
-			$animate.play("slash_down")
-		$animate2.play("down")
-		is_attacking = true
-		var colliders = [$attack/left,$attack/bottomleft,$attack/down]
-		for i in colliders:
-			if i.is_colliding():
-				print("eyfdyghb")
-				if i.get_collider().has_method('get_dmged'):
-					i.get_collider().get_dmged(current_dmg)
-	elif facing == "right" or facing =="bottomright":
-		if crackedsprite:
-			$animate.play("crack")
-		else:
-			$animate.play("slash_right")
-		$animate2.play("right")
-		is_attacking = true
-		var colliders = [$attack/down,$attack/bottomright,$attack/right]
-		for i in colliders:
-			if i.is_colliding():
-				if i.get_collider().has_method('get_dmged'):
-					i.get_collider().get_dmged(current_dmg)
-	elif facing == "left" or facing =="topleft":
-		if crackedsprite:
-			$animate.play("crack")
-		else:
-			$animate.play("slash_left")
-		$animate2.play("left")
-		is_attacking = true
-		var colliders = [$attack/up,$attack/topleft,$attack/left]
-		for i in colliders:
-			if i.is_colliding():
-				if i.get_collider().has_method('get_dmged'):
-					i.get_collider().get_dmged(current_dmg)
+	
+	var dir = facing
+	if dir in ["up", "topright"]:
+		dir = "up"
+	elif dir in ["left", "topleft"]:
+		dir = "left"
+	elif dir in ["down", "bottomleft"]:
+		dir = "down"
+	elif dir in ["right", "bottomright"]:
+		dir = "right"
+
+	var attack_data = {
+		"up": {"anim": "slash_up", "hitbox": $attack/topright},
+		"down": {"anim": "slash_down", "hitbox": $attack/bottomleft},
+		"left": {"anim": "slash_left", "hitbox": $attack/topleft},
+		"right": {"anim": "slash_right", "hitbox": $attack/bottomright}
+	}
+
+	if crackedsprite:
+		$animate.play("crack")
+	else:
+		$animate.play(attack_data[dir]["anim"])
+
+	$animate2.play(dir)
+	$animate2.z_index = 100
+
+	for hb in [$attack/topleft, $attack/topright, $attack/bottomleft, $attack/bottomright]:
+		hb.monitoring = false
+		hb.visible = false
+
+	var hitbox = attack_data[dir]["hitbox"]
+	hitbox.monitoring = true
+	hitbox.visible = true
+
 	await $animate.animation_finished
-	is_attacking = false
+
+	hitbox.monitoring = false
+	hitbox.visible = false
 	$animate2.visible = false
+
 	can_move = true
+	is_attacking = false
 	await get_tree().create_timer(time_between_atk).timeout
+
+
+
 
 func sac_healthui():
 	get_node('Camera2D/guid/HBoxContainer/health').visible = false
@@ -289,3 +285,24 @@ func sac_timebetweenatk():
 func sac_plrsprite():
 	crackedsprite = true
 	SacManager.add_sac(SacManager.inter_sac, "plr_sprt")
+
+
+
+func _on_topright_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		body.get_dmged(current_dmg)
+
+
+func _on_bottomleft_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		body.get_dmged(current_dmg)
+
+
+func _on_bottomright_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		body.get_dmged(current_dmg)
+
+
+func _on_topleft_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		body.get_dmged(current_dmg)

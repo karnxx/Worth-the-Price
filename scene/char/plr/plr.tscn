@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://vrghinlw6gon"]
+[gd_scene load_steps=31 format=3 uid="uid://vrghinlw6gon"]
 
 [ext_resource type="Script" uid="uid://bj1srh5evpbu1" path="res://scene/char/plr/plr.gd" id="1_8bfwx"]
 [ext_resource type="SpriteFrames" uid="uid://ovq3ws86nq7" path="res://scene/char/plr/plr.tres" id="2_evpjb"]
@@ -174,6 +174,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_iivyv"]
 radius = 3.16228
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_paua2"]
+size = Vector2(17, 16)
+
 [node name="plr" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_8bfwx")
@@ -200,46 +203,39 @@ visible = false
 
 [node name="attack" type="Node2D" parent="."]
 
-[node name="down" type="RayCast2D" parent="attack"]
-target_position = Vector2(0, 25)
+[node name="topright" type="Area2D" parent="attack"]
+collision_layer = 0
 collision_mask = 8
 
-[node name="up" type="RayCast2D" parent="attack"]
-position = Vector2(0, -2)
-target_position = Vector2(0, -25)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack/topright"]
+position = Vector2(8.5, -8)
+shape = SubResource("RectangleShape2D_paua2")
+
+[node name="bottomleft" type="Area2D" parent="attack"]
+collision_layer = 0
 collision_mask = 8
 
-[node name="left" type="RayCast2D" parent="attack"]
-position = Vector2(-1, 0)
-rotation = 1.5708
-target_position = Vector2(-0.999902, 27)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack/bottomleft"]
+position = Vector2(-8.5, 8)
+shape = SubResource("RectangleShape2D_paua2")
+
+[node name="bottomright" type="Area2D" parent="attack"]
+collision_layer = 0
 collision_mask = 8
 
-[node name="right" type="RayCast2D" parent="attack"]
-rotation = 1.5708
-target_position = Vector2(-9.77397e-05, -27)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack/bottomright"]
+position = Vector2(8.5, 8)
+shape = SubResource("RectangleShape2D_paua2")
+
+[node name="topleft" type="Area2D" parent="attack"]
+collision_layer = 0
 collision_mask = 8
 
-[node name="bottomright" type="RayCast2D" parent="attack"]
-position = Vector2(1, 1)
-rotation = -0.785398
-target_position = Vector2(-0.707101, 28.9914)
-collision_mask = 8
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack/topleft"]
+position = Vector2(-8.5, -8)
+shape = SubResource("RectangleShape2D_paua2")
 
-[node name="topright" type="RayCast2D" parent="attack"]
-position = Vector2(-1, -1)
-rotation = -0.785398
-target_position = Vector2(-0.707112, -27.5772)
-collision_mask = 8
-
-[node name="bottomleft" type="RayCast2D" parent="attack"]
-position = Vector2(-1, 1)
-rotation = 0.785398
-target_position = Vector2(-0.707112, 27.5772)
-collision_mask = 8
-
-[node name="topleft" type="RayCast2D" parent="attack"]
-position = Vector2(1, -1)
-rotation = 0.785398
-target_position = Vector2(5.48363e-06, -29.6985)
-collision_mask = 8
+[connection signal="body_entered" from="attack/topright" to="." method="_on_topright_body_entered"]
+[connection signal="body_entered" from="attack/bottomleft" to="." method="_on_bottomleft_body_entered"]
+[connection signal="body_entered" from="attack/bottomright" to="." method="_on_bottomright_body_entered"]
+[connection signal="body_entered" from="attack/topleft" to="." method="_on_topleft_body_entered"]

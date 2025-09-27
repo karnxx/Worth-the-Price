@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 		start_wave()
 
 func start_wave():
-	mobs_per_wave = wave * wave+4
+	mobs_per_wave = wave * wave+3
 	spawned_mobs = 0
 	spawn_timer = 0.0
 	print("Wave ", wave, " started! Mobs to spawn: ", mobs_per_wave)

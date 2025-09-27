@@ -774,13 +774,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w05gc"]
-size = Vector2(13, 10)
+size = Vector2(11, 18)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4dyol"]
 radius = 34.0
 height = 68.0
 
-[node name="Fireball_man" type="CharacterBody2D"]
+[node name="Fireball_man" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 9
 script = ExtResource("1_w05gc")
 
@@ -792,15 +792,15 @@ frame = 5
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 11)
+position = Vector2(0.5, 6)
 shape = SubResource("RectangleShape2D_w05gc")
 debug_color = Color(0, 0.6, 0.701961, 0.27451)
 
-[node name="hit_detect" type="Area2D" parent="."]
+[node name="plr_detect" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_detect"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plr_detect"]
 position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_4dyol")
 debug_color = Color(0.984314, 0, 0.360784, 0.203922)
