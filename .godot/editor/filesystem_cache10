@@ -1,11 +1,10 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1758940087
-Character_DownLeft.png::CompressedTexture2D::773550947208139095::1758939839::1758940087::1::::<><><>0<>0<>bee8840af251850f85bda7419653f23d<>res://.godot/imported/Character_DownLeft.png-4a1a01fa8c28bc80b1df7c212fdf1b78.ctex::
+::res://::1758940670
 icon.svg::CompressedTexture2D/CompressedTexture2D::8942820473816431589::1758939781::1758939791::1::::<><><>0<>0<>d820a9dbad9f431c3b780e02cea52810<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile/TextFile::-1::1758940082::0::1::::<><><>0<>0<><>::
 Test.tscn::PackedScene/PackedScene::-1::1758940082::0::1::::<><><>0<>0<><>::
 ::res://addons/::1758940082
-::res://addons/godot_super-wakatime/::1758940082
+::res://addons/godot_super-wakatime/::1758940530
 api_key_prompt.tscn::PackedScene/PackedScene::3919262858641749045::1758940082::0::1::::<><><>0<>0<><>::
 counter.tscn::PackedScene/PackedScene::6849360014225833986::1758940082::0::1::::<><><>0<>0<><>::
 decompressor.gd::GDScript/GDScript::513498479588648040::1758940082::0::1::::<>RefCounted<><>0<>0<><>::
@@ -14,11 +13,13 @@ heartbeat.gd::GDScript/GDScript::2715808424618332339::1758940082::0::1::::<>RefC
 plugin.cfg::TextFile/TextFile::-1::1758940082::0::1::::<><><>0<>0<><>::
 README.md::TextFile/TextFile::-1::1758940082::0::1::::<><><>0<>0<><>::
 utils.gd::GDScript/GDScript::5251015809120159908::1758940082::0::1::::<>RefCounted<><>0<>0<><>::
+wakatime.cfg::TextFile::-1::1758940530::0::1::::<><><>0<>0<><>::
 ::res://assets/::1758939810
 ::res://assets/char/::1758939850
 ::res://assets/char/plr/::1758939850
-::res://assets/char/plr/Character/::1758940087
+::res://assets/char/plr/Character/::1758940670
 Character_Down.png::CompressedTexture2D/CompressedTexture2D::4684877115988412193::1758939839::1758939851::1::::<><><>0<>0<>566573808dfc5d2862d83a22bc5b4ffb<>res://.godot/imported/Character_Down.png-399644c2762b7c288d3d97e59831977b.ctex::
+Character_DownLeft.png::CompressedTexture2D::773550947208139095::1758939839::1758940671::1::::<><><>0<>0<>b2356aa9b75b54f5f135a4f6c3ba70cc<>res://.godot/imported/Character_DownLeft.png-470c30a9f9707035d07023fdf9091fd8.ctex::
 Character_DownRight.png::CompressedTexture2D/CompressedTexture2D::4416646632827212452::1758939839::1758939851::1::::<><><>0<>0<>c29efda0e9eca73c65f37f6a24d5e10f<>res://.godot/imported/Character_DownRight.png-f67879f7b3aba46cef1492f27b8149af.ctex::
 Character_Left.png::CompressedTexture2D/CompressedTexture2D::8394070065363068150::1758939839::1758939851::1::::<><><>0<>0<>28e2db7abde774178a4ce4c951a1d259<>res://.godot/imported/Character_Left.png-1a50d8444a0cabe1a74ec49e553cabb1.ctex::
 Character_Right.png::CompressedTexture2D/CompressedTexture2D::4688453763920756978::1758939839::1758939851::1::::<><><>0<>0<>d2fdeb213f6321768e2e568f9175dd50<>res://.godot/imported/Character_Right.png-b8b4f474b478739df9109870c765769f.ctex::
@@ -42,7 +43,3 @@ Sword_DownLeft.png::CompressedTexture2D/CompressedTexture2D::8021194765157447872
 Sword_DownRight.png::CompressedTexture2D/CompressedTexture2D::2882395894038036540::1758939839::1758939850::1::::<><><>0<>0<>c96b7d9c6084bb6b1aff629ffd0f2a73<>res://.godot/imported/Sword_DownRight.png-101ac1c45f0a454f99eb2e204a940c30.ctex::
 Sword_UpLeft.png::CompressedTexture2D/CompressedTexture2D::4455994982592894145::1758939839::1758939850::1::::<><><>0<>0<>f34382b8f8a134f4b4cc389608274caa<>res://.godot/imported/Sword_UpLeft.png-d2b666008e5dc2ffff0f16c475d742b9.ctex::
 Sword_UpRight.png::CompressedTexture2D/CompressedTexture2D::2152844203547123452::1758939839::1758939850::1::::<><><>0<>0<>e4e17c155f5b0c655ab1d927be93171e<>res://.godot/imported/Sword_UpRight.png-327ad4f2689107c11610d81ce0a5831b.ctex::
-::res://images/::1758940083
-godotwaka2.png::CompressedTexture2D/CompressedTexture2D::7026850610005011835::1758940082::1758940083::1::::<><><>0<>0<>810b540a66b6e3b66a13986e88af977c<>res://.godot/imported/godotwaka2.png-7d3d010fb4adc0d433467ab1cc4754ed.ctex::
-godotwaka.png::CompressedTexture2D/CompressedTexture2D::7932361111412089001::1758940082::1758940083::1::::<><><>0<>0<>b1dc139e8838b61e9cb033db1ca4f185<>res://.godot/imported/godotwaka.png-ef0518417b4f997d237759e5551dd05d.ctex::
-icon.jpg::CompressedTexture2D/CompressedTexture2D::3122668444336440389::1758940082::1758940082::1::::<><><>0<>0<>e0b87e0d780caf0d81474113c8024455<>res://.godot/imported/icon.jpg-64f68b30ea939aa8019167e67dffb2db.ctex::
