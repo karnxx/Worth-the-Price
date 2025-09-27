@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 res://scene/scipts
+=======
+res://scene/char/enemies
+res://assets/char/enemy/fireball_guy
+>>>>>>> 58deb31 (temporary save before pulling)
 res://scene/uis
 res://assets/char/plr/Character
 res://assets/char/plr/Weapon
