@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Worth the Price"
-run/main_scene="res://assets/scenes/intro.tscn"
+run/main_scene="res://scene/uis/intro.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,11 +19,9 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-<<<<<<< HEAD
 window/size/mode=3
 window/stretch/mode="canvas_items"
-=======
->>>>>>> e1943f4 (intro scene)
+<<<<<<<HEADwindow/size/mode=3
 
 [rendering]
 
