@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	if input_dir != Vector2.ZERO and can_move:
 		velocity = input_dir.normalized() * speed
 		last_dir = input_dir
-		if not is_rolling:
+		if not is_rolling and not is_attacking:
 			playwalk(input_dir)
 		is_moving = true
 	else:
@@ -120,16 +120,16 @@ func roll(dir) -> void:
 func sword_slash():
 	can_move = false
 	$animate2.visible = true
-	if facing == "up":
+	if facing == "up" or facing =="topright":
 		$animate.play("slash_up")
 		$animate2.play("up")
-		var colliders = [$attack/up,$attack/right,$attack/topleft]
+		var colliders = [$attack/up,$attack/right,$attack/topright]
 		is_attacking = true
 		for i in colliders:
 			if i.is_colliding():
 				if i.get_collider().has_method('get_dmged'):
 					i.get_collider().get_dmged(current_dmg)
-	elif facing == "down":
+	elif facing == "down" or facing =="bottomleft":
 		$animate.play("slash_down")
 		$animate2.play("down")
 		is_attacking = true
@@ -138,7 +138,7 @@ func sword_slash():
 			if i.is_colliding():
 				if i.get_collider().has_method('get_dmged'):
 					i.get_collider().get_dmged(current_dmg)
-	elif facing == "right":
+	elif facing == "right" or facing =="bottomright":
 		$animate.play("slash_right")
 		$animate2.play("right")
 		is_attacking = true
@@ -147,7 +147,7 @@ func sword_slash():
 			if i.is_colliding():
 				if i.get_collider().has_method('get_dmged'):
 					i.get_collider().get_dmged(current_dmg)
-	elif facing == "left":
+	elif facing == "left" or facing =="topleft":
 		$animate.play("slash_left")
 		$animate2.play("left")
 		is_attacking = true
