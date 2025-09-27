@@ -1,7 +1,7 @@
+TileMap
 Node2D
 CharacterBody2D
 MeshInstance3D
-TileMap
 GridMap
 StaticBody3D
 CSGBox3D

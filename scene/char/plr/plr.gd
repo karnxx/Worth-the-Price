@@ -1,49 +1,51 @@
 extends CharacterBody2D
+
+
+@export var health: int = 100
+@export var stm: int = 50
+@export var dmg: int = 10
+@export var speed: float = 200.0
+@export var roll_dis: int = 100
+
 var current_health
 var current_stm
 var current_dmg
 var current_roll_dis
-@export var roll_dis : int
-@export var health :int
-@export var stm:int
-@export var dmg:int
 
-@export var speed: float = 2.0
-#	-health ui
-#	-stm ui
-#	-ability to roll
-#	-colours
-#	-vision-blur-viginette
-#	-losing allies
-#	-enemy healthbar
-#	-ability to move in a dir-only 1 round
-#	-dmg lag
-#	-roll i frames
-#	-Sound
-#	-delayed controls
-#	-speed
-var input_dir: Vector2
-var move_dir: Vector3
+var input_dir: Vector2 = Vector2.ZERO
+var last_dir: Vector2 = Vector2.DOWN
+var is_rolling: bool = false
+var is_moving: bool = false
+
+func _ready():
+	current_health = health
+	current_stm = stm
+	current_dmg = dmg
+	current_roll_dis = roll_dis
 
 func _physics_process(delta: float) -> void:
-	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up","ui_down")
-	move_dir = Vector3(input_dir.x, 0, input_dir.y)
-	if move_dir != Vector3.ZERO:
-		move_dir = move_dir.normalized() * speed
-		velocity.x = -move_dir.x
-		velocity.y = -move_dir.y
-		walkanim(input_dir)
+	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	
+	if input_dir != Vector2.ZERO:
+		velocity = input_dir.normalized() * speed
+		last_dir = input_dir
+		if not is_rolling:
+			playwalk(input_dir)
+		is_moving = true
+		print(last_dir)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.y = move_toward(velocity.y, 0, speed)
-		idleanim(input_dir)
-	if !is_on_floor():
-		velocity.y -= 10 * 10
-	if Input.is_action_just_pressed("roll"):
-		roll(input_dir)
+		velocity = Vector2.ZERO
+		if not is_rolling:
+			playidle(last_dir)
+		is_moving = false
+	if Input.is_action_just_pressed("roll") and not is_rolling:
+		is_rolling = true
+		await roll(last_dir)
+		is_rolling = false
+	
 	move_and_slide()
 
-func walkanim(dir):
+func playwalk(dir) -> void:
 	if dir.x > 0 and dir.y == 0:
 		$animate.play("walk_right")
 	elif dir.x < 0 and dir.y == 0:
@@ -61,13 +63,44 @@ func walkanim(dir):
 	elif dir.x < 0 and dir.y > 0:
 		$animate.play("walk_bottomleft")
 
-func idleanim(dir):
-	if dir == Vector2.ZERO:
-		print('ad')
-	else:
-		walkanim(dir)
+func playidle(dir) -> void:
+	if dir.x > 0 and dir.y == 0:
+		$animate.play("right_idle")
+	elif dir.x < 0 and dir.y == 0:
+		$animate.play("left_idle")
+	elif dir.y < 0 and dir.x == 0:
+		$animate.play("up_idle")
+	elif dir.y > 0 and dir.x == 0:
+		$animate.play("down_idle")
+	elif dir.x > 0 and dir.y < 0:
+		$animate.play("upright_idle")
+	elif dir.x < 0 and dir.y < 0:
+		$animate.play("upleft_idle")
+	elif dir.x > 0 and dir.y > 0:
+		$animate.play("downright_idle")
+	elif dir.x < 0 and dir.y > 0:
+		$animate.play("downleft_idle")
 
-func roll(dir):
+func playrol(dir) -> void:
+	if dir.x > 0 and dir.y == 0:
+		$animate.play("roll_right")
+	elif dir.x < 0 and dir.y == 0:
+		$animate.play("roll_left")
+	elif dir.y < 0 and dir.x == 0:
+		$animate.play("roll_up")
+	elif dir.y > 0 and dir.x == 0:
+		$animate.play("roll_down")
+	elif dir.x > 0 and dir.y < 0:
+		$animate.play("roll_upright")
+	elif dir.x < 0 and dir.y < 0:
+		$animate.play("roll_upleft")
+	elif dir.x > 0 and dir.y > 0:
+		$animate.play("roll_downright")
+	elif dir.x < 0 and dir.y > 0:
+		$animate.play("roll_downleft")
+
+func roll(dir) -> void:
+	playrol(dir)
 	var tween = create_tween()
-	tween.tween_property(self, "global_position", global_position + (dir * 10), 1)
-	
+	tween.tween_property(self, "global_position", global_position + (dir.normalized() * roll_dis), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	await tween.finished

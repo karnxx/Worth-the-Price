@@ -12,7 +12,8 @@ script = ExtResource("1_8bfwx")
 [node name="animate" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = ExtResource("2_evpjb")
-animation = &"walk_bottomleft"
+animation = &"roll_downleft"
+frame_progress = 0.176102
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iivyv")
