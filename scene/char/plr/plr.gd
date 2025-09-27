@@ -25,7 +25,7 @@ func _ready():
 	current_dmg = dmg
 	current_roll_dis = roll_dis
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if input_dir != Vector2.ZERO and can_move:
@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 			sword_slash()
 	move_and_slide()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	get_node('Camera2D/guid').current_health = current_health
 	get_node('Camera2D/guid').maxhealth = health
 	get_node('Camera2D/guid').current_stm = current_stm
