@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b58bqp6ko1aqj"]
+[gd_scene load_steps=8 format=3 uid="uid://b58bqp6ko1aqj"]
 
 [ext_resource type="Script" uid="uid://endk4umaam1t" path="res://scene/uis/guid.gd" id="1_hv570"]
+[ext_resource type="Shader" uid="uid://4a531e7ql6ba" path="res://scene/uis/guid.gdshader" id="2_4f0y2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hv570"]
 
@@ -11,6 +12,9 @@ bg_color = Color(0, 0, 0.721569, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp2xg"]
 bg_color = Color(1, 0, 0.117647, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_njy4k"]
+shader = ExtResource("2_4f0y2")
 
 [node name="guid" type="CanvasLayer"]
 script = ExtResource("1_hv570")
@@ -38,3 +42,11 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_njy4k")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bp2xg")
 fill_mode = 3
 show_percentage = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_njy4k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

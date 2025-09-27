@@ -179,3 +179,7 @@ func sac_stmui():
 func sac_roll():
 	able_to_roll = false
 	SacManager.add_sac(SacManager.adv_sac, "roll_gone")
+ 
+func sac_color():
+	get_node('Camera2D/guid/ColorRect').visible = true
+	SacManager.add_sac(SacManager.basic_sac, "greyscale_vision")
