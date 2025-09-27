@@ -46,6 +46,9 @@ func _physics_process(delta: float) -> void:
 		if not is_rolling and not is_attacking:
 			sword_slash()
 	move_and_slide()
+func _process(delta: float) -> void:
+	get_node('Camera2D/guid').current_health = current_health
+	get_node('Camera2D/guid').maxhealth = health
 
 func playwalk(dir) -> void:
 	if dir.x > 0 and dir.y == 0:

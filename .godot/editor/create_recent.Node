@@ -1,3 +1,7 @@
+ProgressBar
+HSlider
+CanvasLayer
+CanvasGroup
 RayCast2D
 Node2D
 TileMap
@@ -9,5 +13,3 @@ CSGBox3D
 Camera3D
 CollisionShape3D
 CharacterBody3D
-AnimatedSprite3D
-Sprite2D

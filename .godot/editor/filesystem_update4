@@ -2,3 +2,5 @@ res://scene/char/plr/plr.tscn
 res://scene/char/plr/plr.tres
 res://scene/char/plr/plr.gd
 res://scene/lvl/lvl_1.tscn
+res://scene/uis/guid.tscn
+res://scene/uis/guid.gd

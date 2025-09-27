@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://vrghinlw6gon"]
+[gd_scene load_steps=30 format=3 uid="uid://vrghinlw6gon"]
 
 [ext_resource type="Script" uid="uid://bj1srh5evpbu1" path="res://scene/char/plr/plr.gd" id="1_8bfwx"]
 [ext_resource type="SpriteFrames" uid="uid://ovq3ws86nq7" path="res://scene/char/plr/plr.tres" id="2_evpjb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b4qrt62jvda8x" path="res://assets/char/plr/Weapon/Sword_UpLeft.png" id="4_paua2"]
 [ext_resource type="Texture2D" uid="uid://bhcivy8e106ts" path="res://assets/char/plr/Weapon/Sword_DownRight.png" id="5_p0o5n"]
 [ext_resource type="Texture2D" uid="uid://5w4badnfye81" path="res://assets/char/plr/Weapon/Sword_UpRight.png" id="6_8bfwx"]
+[ext_resource type="PackedScene" uid="uid://b58bqp6ko1aqj" path="res://scene/uis/guid.tscn" id="7_paua2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2llgx"]
 atlas = ExtResource("3_ni8ol")
@@ -193,6 +194,8 @@ shape = SubResource("CircleShape2D_iivyv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="guid" parent="Camera2D" instance=ExtResource("7_paua2")]
 
 [node name="attack" type="Node2D" parent="."]
 
