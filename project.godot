@@ -23,6 +23,10 @@ window/size/mode=3
 window/stretch/mode="canvas_items"
 <<<<<<<HEADwindow/size/mode=3
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
 [input]
 
 roll={
