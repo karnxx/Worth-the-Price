@@ -51,7 +51,7 @@ func spawn_random_mob():
 	if spawns.is_empty():
 		return null
 	var mob_scene
-	if randi() % 100 < 20:
+	if randi() % 100 < 40:
 		mob_scene = mob2
 	else:
 		mob_scene = mob1

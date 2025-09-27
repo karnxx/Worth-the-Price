@@ -65,7 +65,9 @@ func _process(_delta: float) -> void:
 	get_node('Camera2D/guid').maxhealth = health
 	get_node('Camera2D/guid').current_stm = current_stm
 	get_node('Camera2D/guid').maxstm = stm
-	
+	if is_moving:
+		$AudioStreamPlayer.stream = preload("res://assets/footsteps-108047 (mp3cut.net).mp3")
+		$AudioStreamPlayer.play()
 	if current_stm != stm:
 		current_stm = current_stm + 0.05
 
