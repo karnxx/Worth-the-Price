@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends CharacterBody2D
 var current_health
 var current_stm
 var current_dmg
@@ -31,38 +31,43 @@ func _physics_process(delta: float) -> void:
 	if move_dir != Vector3.ZERO:
 		move_dir = move_dir.normalized() * speed
 		velocity.x = -move_dir.x
-		velocity.z = -move_dir.z
+		velocity.y = -move_dir.y
 		walkanim(input_dir)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity.y = move_toward(velocity.y, 0, speed)
 		idleanim(input_dir)
 	if !is_on_floor():
 		velocity.y -= 10 * 10
-	
-	
+	if Input.is_action_just_pressed("roll"):
+		roll(input_dir)
 	move_and_slide()
 
-func walkanim(dir=) -> void:
-	if dir.x < 0 and dir.y == 0:
-		$AnimatedSprite3D.play("walk_right")
-	elif dir.x > 0 and dir.y == 0:
-		$AnimatedSprite3D.play("walk_left")
+func walkanim(dir):
+	if dir.x > 0 and dir.y == 0:
+		$animate.play("walk_right")
+	elif dir.x < 0 and dir.y == 0:
+		$animate.play("walk_left")
 	elif dir.y < 0 and dir.x == 0:
-		$AnimatedSprite3D.play("walk_up")
+		$animate.play("walk_up")
 	elif dir.y > 0 and dir.x == 0:
-		$AnimatedSprite3D.play("walk_down")
-	elif dir.x < 0 and dir.y < 0:
-		$AnimatedSprite3D.play("walk_topright")
+		$animate.play("walk_down")
 	elif dir.x > 0 and dir.y < 0:
-		$AnimatedSprite3D.play("walk_topleft")
-	elif dir.x < 0 and dir.y > 0:
-		$AnimatedSprite3D.play("wawlk_bottomright")
+		$animate.play("walk_topright")
+	elif dir.x < 0 and dir.y < 0:
+		$animate.play("walk_topleft")
 	elif dir.x > 0 and dir.y > 0:
-		$AnimatedSprite3D.play("walk_bottomleft")
+		$animate.play("wawlk_bottomright")
+	elif dir.x < 0 and dir.y > 0:
+		$animate.play("walk_bottomleft")
 
-func idleanim(dir) -> void:
+func idleanim(dir):
 	if dir == Vector2.ZERO:
 		print('ad')
 	else:
 		walkanim(dir)
+
+func roll(dir):
+	var tween = create_tween()
+	tween.tween_property(self, "global_position", global_position + (dir * 10), 1)
+	
