@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var dmg: int = 10
 @export var speed: float = 200.0
 @export var roll_dis: int = 100
-
+var facing
 var current_health
 var current_stm
 var current_dmg
@@ -14,9 +14,10 @@ var current_roll_dis
 
 var input_dir: Vector2 = Vector2.ZERO
 var last_dir: Vector2 = Vector2.DOWN
-var is_rolling: bool = false
-var is_moving: bool = false
-
+var is_rolling:= false
+var is_moving:= false
+var is_attacking := false
+var can_move :=true
 func _ready():
 	current_health = health
 	current_stm = stm
@@ -26,59 +27,69 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
-	if input_dir != Vector2.ZERO:
+	if input_dir != Vector2.ZERO and can_move:
 		velocity = input_dir.normalized() * speed
 		last_dir = input_dir
 		if not is_rolling:
 			playwalk(input_dir)
 		is_moving = true
-		print(last_dir)
 	else:
 		velocity = Vector2.ZERO
-		if not is_rolling:
-			playidle(last_dir)
+		if not is_rolling and not is_attacking:
+			playidle()
 		is_moving = false
 	if Input.is_action_just_pressed("roll") and not is_rolling:
 		is_rolling = true
 		await roll(last_dir)
 		is_rolling = false
-	
+	if Input.is_action_just_pressed("ui_accept"):
+		if not is_rolling and not is_attacking:
+			sword_slash()
 	move_and_slide()
 
 func playwalk(dir) -> void:
 	if dir.x > 0 and dir.y == 0:
 		$animate.play("walk_right")
+		facing = "right"
 	elif dir.x < 0 and dir.y == 0:
 		$animate.play("walk_left")
+		facing = "left"
 	elif dir.y < 0 and dir.x == 0:
 		$animate.play("walk_up")
+		facing = "up"
 	elif dir.y > 0 and dir.x == 0:
 		$animate.play("walk_down")
+		facing = "down"
 	elif dir.x > 0 and dir.y < 0:
 		$animate.play("walk_topright")
+		facing = "topright"
 	elif dir.x < 0 and dir.y < 0:
 		$animate.play("walk_topleft")
+		facing = "topleft"
 	elif dir.x > 0 and dir.y > 0:
 		$animate.play("wawlk_bottomright")
+		facing = "bottomright"
 	elif dir.x < 0 and dir.y > 0:
 		$animate.play("walk_bottomleft")
+		facing = "bottomleft"
 
-func playidle(dir) -> void:
-	if dir.x > 0 and dir.y == 0:
+func playidle() -> void:
+	var dir
+	if facing == "right":
 		$animate.play("right_idle")
-	elif dir.x < 0 and dir.y == 0:
+	elif facing == "left":
 		$animate.play("left_idle")
-	elif dir.y < 0 and dir.x == 0:
+	elif facing == "up":
 		$animate.play("up_idle")
-	elif dir.y > 0 and dir.x == 0:
+	elif facing == "down":
 		$animate.play("down_idle")
-	elif dir.x > 0 and dir.y < 0:
+	elif facing == "topright":
 		$animate.play("upright_idle")
-	elif dir.x < 0 and dir.y < 0:
+	elif facing == "topleft":
 		$animate.play("upleft_idle")
-	elif dir.x > 0 and dir.y > 0:
+	elif facing == "bottomright":
 		$animate.play("downright_idle")
-	elif dir.x < 0 and dir.y > 0:
+	elif facing == "bottomleft":
 		$animate.play("downleft_idle")
 
 func playrol(dir) -> void:
@@ -100,7 +111,52 @@ func playrol(dir) -> void:
 		$animate.play("roll_downleft")
 
 func roll(dir) -> void:
+	can_move =false
 	playrol(dir)
 	var tween = create_tween()
 	tween.tween_property(self, "global_position", global_position + (dir.normalized() * roll_dis), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	await tween.finished
+	can_move = true
+func sword_slash():
+	can_move = false
+	$animate2.visible = true
+	if facing == "up":
+		$animate.play("slash_up")
+		$animate2.play("up")
+		var colliders = [$attack/up,$attack/right,$attack/topleft]
+		is_attacking = true
+		for i in colliders:
+			if i.is_colliding():
+				if i.get_collider().has_method('get_dmged'):
+					i.get_collider().get_dmged(current_dmg)
+	elif facing == "down":
+		$animate.play("slash_down")
+		$animate2.play("down")
+		is_attacking = true
+		var colliders = [$attack/left,$attack/bottomleft,$attack/down]
+		for i in colliders:
+			if i.is_colliding():
+				if i.get_collider().has_method('get_dmged'):
+					i.get_collider().get_dmged(current_dmg)
+	elif facing == "right":
+		$animate.play("slash_right")
+		$animate2.play("right")
+		is_attacking = true
+		var colliders = [$attack/down,$attack/bottomright,$attack/right]
+		for i in colliders:
+			if i.is_colliding():
+				if i.get_collider().has_method('get_dmged'):
+					i.get_collider().get_dmged(current_dmg)
+	elif facing == "left":
+		$animate.play("slash_left")
+		$animate2.play("left")
+		is_attacking = true
+		var colliders = [$attack/up,$attack/topleft,$attack/left]
+		for i in colliders:
+			if i.is_colliding():
+				if i.get_collider().has_method('get_dmged'):
+					i.get_collider().get_dmged(current_dmg)
+	await $animate.animation_finished
+	is_attacking = false
+	$animate2.visible = false
+	can_move = true
