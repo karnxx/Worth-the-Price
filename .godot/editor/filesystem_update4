@@ -1,13 +1,9 @@
+res://scene/char/plr/plr.tscn
 res://scene/char/plr/plr.tres
-<<<<<<< HEAD
 res://scene/char/plr/plr.gd
 res://scene/lvl/lvl_1.tscn
 res://scene/uis/guid.tscn
 res://scene/uis/guid.gd
 res://scene/scipts/sac_manager.gd
-<<<<<<< Updated upstream
-=======
->>>>>>> 58deb31 (temporary save before pulling)
-=======
 res://scene/uis/guid.gdshader
->>>>>>> Stashed changes
+res://scene/uis/a.gdshader

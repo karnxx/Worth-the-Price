@@ -1,25 +1,14 @@
-<<<<<<< HEAD
+TextureRect
 ColorRect
 VBoxContainer
 HBoxContainer
-=======
 CollisionShape2D
 Area2D
 AnimatedSprite2D
 CharacterBody2D
->>>>>>> 58deb31 (temporary save before pulling)
 ProgressBar
-TextureRect
 TextEdit
 HSlider
 CanvasLayer
 CanvasGroup
 RayCast2D
-Node2D
-TileMap
-MeshInstance3D
-GridMap
-<<<<<<< HEAD
-=======
-StaticBody3D
->>>>>>> 58deb31 (temporary save before pulling)
