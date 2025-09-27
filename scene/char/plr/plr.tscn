@@ -175,6 +175,7 @@ animations = [{
 radius = 3.16228
 
 [node name="plr" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_8bfwx")
 
 [node name="animate" type="AnimatedSprite2D" parent="."]
