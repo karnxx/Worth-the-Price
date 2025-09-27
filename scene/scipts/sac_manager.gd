@@ -4,25 +4,25 @@ var sacs = {}
 
 func _ready() -> void:
 	sacs = {
-	"health_ui_gone": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_healthui"},
-	"stm_ui_gone": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_stmui"},
-	"roll_gone": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_roll"},
-	"greyscale_vision": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_color"},
-	"viginette1": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_eyesight1"},
-	"viginette2": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_eyesight2"},
-	"sound_mute": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_sound"},
-	"max_health_-10": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_max_health10"},
-	"max_health_-20": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_max_health20"},
-	"max_health_-30": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_max_health30"},
-	"max_health_-40": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_max_health40"},
-	"max_health_-70": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_max_health70"},
-	"sac_movement_lag05s": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_movement_lag05s"},
-	"sac_movement_lag1s": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_movement_lag1s"},
-	"sac_iframes": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_iframes"},
-	"sac_dmg_10": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_dmg10"},
-	"sac_speed": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_speed"},
-	"swingcd": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_timebetweenatk"},
-	"plr_sprt": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_plrsprite"}
+	"Health UI Dissapears..": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_healthui"},
+	"STM UI Dissapears..": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_stmui"},
+	"No More Roll!": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_roll"},
+	"Gaming in the 90's": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_color"},
+	"Owl Vision": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_eyesight1"},
+	"Broken Eyes": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_eyesight2"},
+	"Deaf!": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_sound"},
+	"Peaceful(-10 max hp)": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_max_health10"},
+	"Easy(-20 max hp)": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_max_health20"},
+	"Normal(-30 max hp)": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_max_health30"},
+	"Hard(-40 max hp)": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_max_health40"},
+	"Hardcore death more(-70 max hp)": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_max_health70"},
+	"Mid WIFI": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_movement_lag05s"},
+	"Potato WIFI": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_movement_lag1s"},
+	"No more eye frame": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_iframes"},
+	"weak hands!": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_dmg10"},
+	"Turtle!": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_speed"},
+	"Slow hands!": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_timebetweenatk"},
+	"ERROR_NO_TEXTURE": {"node": get_tree().current_scene.get_node("plr"), "func": "sac_plrsprite"}
 }
 
 func apply_debuff(name: String):
@@ -44,7 +44,6 @@ func pick_random_debuffs(count: int) -> Array:
 func generate_cards() -> Array:
 	var cards = []
 	for i in range(3):
-		# pick_random_debuffs(1) returns an Array, so grab [0] to get the single debuff name
 		var debuff_name = pick_random_debuffs(1)[0]
 		cards.append(debuff_name)
 	return cards

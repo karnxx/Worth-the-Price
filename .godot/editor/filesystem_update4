@@ -9,3 +9,7 @@ res://scene/char/enemies/fireball_man.gd
 res://scene/scipts/sac_manager.gd
 res://scene/uis/card_selec.tscn
 res://scene/uis/card_selec.gd
+res://scene/fireball.tscn
+res://scene/scipts/fireball.gd
+res://scene/trooper.tscn
+res://scene/scipts/trooper.gd

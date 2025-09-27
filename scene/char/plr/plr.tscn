@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://vrghinlw6gon"]
+[gd_scene load_steps=32 format=3 uid="uid://vrghinlw6gon"]
 
 [ext_resource type="Script" uid="uid://bj1srh5evpbu1" path="res://scene/char/plr/plr.gd" id="1_8bfwx"]
 [ext_resource type="SpriteFrames" uid="uid://ovq3ws86nq7" path="res://scene/char/plr/plr.tres" id="2_evpjb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bhcivy8e106ts" path="res://assets/char/plr/Weapon/Sword_DownRight.png" id="5_p0o5n"]
 [ext_resource type="Texture2D" uid="uid://5w4badnfye81" path="res://assets/char/plr/Weapon/Sword_UpRight.png" id="6_8bfwx"]
 [ext_resource type="PackedScene" uid="uid://b58bqp6ko1aqj" path="res://scene/uis/guid.tscn" id="7_paua2"]
+[ext_resource type="PackedScene" uid="uid://bxnriavo6q35r" path="res://scene/uis/card_selec.tscn" id="8_p0o5n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2llgx"]
 atlas = ExtResource("3_ni8ol")
@@ -179,6 +180,7 @@ size = Vector2(17, 16)
 
 [node name="plr" type="CharacterBody2D"]
 y_sort_enabled = true
+collision_layer = 3
 script = ExtResource("1_8bfwx")
 
 [node name="animate" type="AnimatedSprite2D" parent="."]
@@ -199,6 +201,8 @@ shape = SubResource("CircleShape2D_iivyv")
 zoom = Vector2(3, 3)
 
 [node name="guid" parent="Camera2D" instance=ExtResource("7_paua2")]
+
+[node name="card_selec" parent="Camera2D" instance=ExtResource("8_p0o5n")]
 visible = false
 
 [node name="attack" type="Node2D" parent="."]
@@ -234,6 +238,8 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack/topleft"]
 position = Vector2(-8.5, -8)
 shape = SubResource("RectangleShape2D_paua2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="body_entered" from="attack/topright" to="." method="_on_topright_body_entered"]
 [connection signal="body_entered" from="attack/bottomleft" to="." method="_on_bottomleft_body_entered"]

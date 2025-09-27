@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://dinhv081t42jm"]
+
+[ext_resource type="Script" uid="uid://0awjwr7jvlqa" path="res://scene/scipts/fireball.gd" id="1_hwcit"]
+[ext_resource type="Texture2D" uid="uid://bsab8u83yh8iq" path="res://assets/char/enemy/fireball_guy/fireball_shoot.png" id="1_xvsru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwcit"]
+atlas = ExtResource("1_xvsru")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hic13"]
+atlas = ExtResource("1_xvsru")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5gel"]
+atlas = ExtResource("1_xvsru")
+region = Rect2(0, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft0wj"]
+atlas = ExtResource("1_xvsru")
+region = Rect2(512, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ps502"]
+atlas = ExtResource("1_xvsru")
+region = Rect2(0, 1024, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_784oa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwcit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hic13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5gel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft0wj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ps502")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnk85"]
+radius = 14.0
+
+[node name="fireball" type="Node2D"]
+script = ExtResource("1_hwcit")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.075, 0.075)
+sprite_frames = SubResource("SpriteFrames_784oa")
+
+[node name="hit" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 130
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit"]
+shape = SubResource("CircleShape2D_mnk85")
+
+[connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]

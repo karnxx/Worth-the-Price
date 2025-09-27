@@ -46,6 +46,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("roll") and able_to_roll and not is_rolling:
 		if movement_lag != 0:
 			await get_tree().create_timer(movement_lag).timeout
+			$AudioStreamPlayer.stream = preload("res://assets/whoosh-velocity-383019.mp3")
+			$AudioStreamPlayer.play()
 		await roll(last_dir)
 	if Input.is_action_just_pressed("accept") and not is_rolling and not is_attacking:
 		if movement_lag != 0:
@@ -177,11 +179,9 @@ func sword_slash():
 		"right": {"anim": "slash_right", "hitbox": $attack/bottomright}
 	}
 
-	if crackedsprite:
-		$animate.play("crack")
-	else:
-		$animate.play(attack_data[dir]["anim"])
-
+	
+	$AudioStreamPlayer.stream = preload("res://assets/clean-fast-swooshaiff-14784.mp3")
+	$AudioStreamPlayer.play()
 	$animate2.play(dir)
 	$animate2.z_index = 100
 
@@ -192,8 +192,12 @@ func sword_slash():
 	var hitbox = attack_data[dir]["hitbox"]
 	hitbox.monitoring = true
 	hitbox.visible = true
-
-	await $animate.animation_finished
+	if crackedsprite:
+		$animate.play("crack")
+	else:
+		$animate.play(attack_data[dir]["anim"])
+		await $animate.animation_finished
+	
 
 	hitbox.monitoring = false
 	hitbox.visible = false
@@ -265,6 +269,12 @@ func sac_movement_lag1s():
 func get_dmged(dmg):
 	if not is_rolling and caniframe:
 		current_health -= dmg
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", Color.RED, 0.1)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+		if current_health <= 0:
+			queue_free()
+			get_tree().reload_current_scene()
 
 func sac_iframes():
 	caniframe = false
