@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var health: int = 100
 @export var stm: int = 50
 @export var dmg: int = 10
-@export var speed: float = 200.0
+@export var speed: float = 150.0
 @export var roll_dis: int = 100
 var facing
 var current_health
@@ -18,6 +18,7 @@ var is_rolling:= false
 var is_moving:= false
 var is_attacking := false
 var can_move :=true
+
 func _ready():
 	current_health = health
 	current_stm = stm
@@ -46,6 +47,7 @@ func _physics_process(delta: float) -> void:
 		if not is_rolling and not is_attacking:
 			sword_slash()
 	move_and_slide()
+
 func _process(delta: float) -> void:
 	get_node('Camera2D/guid').current_health = current_health
 	get_node('Camera2D/guid').maxhealth = health
@@ -77,7 +79,6 @@ func playwalk(dir) -> void:
 		facing = "bottomleft"
 
 func playidle() -> void:
-	var dir
 	if facing == "right":
 		$animate.play("right_idle")
 	elif facing == "left":
@@ -120,6 +121,7 @@ func roll(dir) -> void:
 	tween.tween_property(self, "global_position", global_position + (dir.normalized() * roll_dis), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	await tween.finished
 	can_move = true
+
 func sword_slash():
 	can_move = false
 	$animate2.visible = true
@@ -163,3 +165,8 @@ func sword_slash():
 	is_attacking = false
 	$animate2.visible = false
 	can_move = true
+
+
+func sac_healthui():
+	get_node('Camera2D/guid/HBoxContainer/health').visible = false
+	

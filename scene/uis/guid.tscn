@@ -1,13 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://b58bqp6ko1aqj"]
+[gd_scene load_steps=6 format=3 uid="uid://b58bqp6ko1aqj"]
 
 [ext_resource type="Script" uid="uid://endk4umaam1t" path="res://scene/uis/guid.gd" id="1_hv570"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hv570"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4f0y2"]
+bg_color = Color(0, 0, 0.721569, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_njy4k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp2xg"]
+bg_color = Color(1, 0, 0.117647, 1)
 
 [node name="guid" type="CanvasLayer"]
 script = ExtResource("1_hv570")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 1639.0
-offset_top = 691.0
-offset_right = 1914.0
-offset_bottom = 1074.0
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 97.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="stm" type="ProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_hv570")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4f0y2")
+fill_mode = 2
+show_percentage = false
+
+[node name="health" type="ProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_njy4k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bp2xg")
 fill_mode = 3
+show_percentage = false

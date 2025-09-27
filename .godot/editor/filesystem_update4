@@ -4,3 +4,4 @@ res://scene/char/plr/plr.gd
 res://scene/lvl/lvl_1.tscn
 res://scene/uis/guid.tscn
 res://scene/uis/guid.gd
+res://scene/scipts/sac_manager.gd

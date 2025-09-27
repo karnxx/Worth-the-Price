@@ -1,4 +1,8 @@
+VBoxContainer
+HBoxContainer
 ProgressBar
+TextureRect
+TextEdit
 HSlider
 CanvasLayer
 CanvasGroup
@@ -9,7 +13,3 @@ CharacterBody2D
 MeshInstance3D
 GridMap
 StaticBody3D
-CSGBox3D
-Camera3D
-CollisionShape3D
-CharacterBody3D
