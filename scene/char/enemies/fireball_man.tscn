@@ -776,7 +776,8 @@ animations = [{
 radius = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4dyol"]
-radius = 13.0
+radius = 34.0
+height = 68.0
 
 [node name="Fireball_man" type="CharacterBody2D"]
 

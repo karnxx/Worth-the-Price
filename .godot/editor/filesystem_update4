@@ -7,3 +7,4 @@ res://scene/uis/guid.gd
 res://scene/scipts/sac_manager.gd
 res://scene/uis/guid.gdshader
 res://scene/uis/a.gdshader
+res://scene/char/enemies/fireball_man.tscn

@@ -18,7 +18,7 @@ var is_rolling:= false
 var is_moving:= false
 var is_attacking := false
 var can_move :=true
-
+var movement_lag = 0
 func _ready():
 	current_health = health
 	current_stm = stm
@@ -29,6 +29,8 @@ func _physics_process(_delta: float) -> void:
 	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if input_dir != Vector2.ZERO and can_move:
+		if movement_lag != 0:
+			await get_tree().create_timer(movement_lag).timeout
 		velocity = input_dir.normalized() * speed
 		last_dir = input_dir
 		if not is_rolling and not is_attacking:
@@ -191,3 +193,31 @@ func sac_eyesight1():
 func sac_eyesight2():
 	get_node('Camera2D/guid/vigin2').visible = true
 	SacManager.add_sac(SacManager.adv_sac, "viginette2")
+
+func sac_sound():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
+	SacManager.add_sac(SacManager.basic_sac, "sound_mute")
+
+func sac_max_health10():
+	health -= 10
+	SacManager.add_sac(SacManager.basic_sac, "max_health_-10")
+
+func sac_max_health20():
+	health -= 20
+	SacManager.add_sac(SacManager.basic_sac, "max_health_-20")
+
+func sac_max_health30():
+	health -= 30
+	SacManager.add_sac(SacManager.inter_sac, "max_health_-30")
+
+func sac_max_health40():
+	health -= 40
+	SacManager.add_sac(SacManager.adv_sac, "max_health_-40")
+
+func sac_max_health70():
+	health -= 70
+	SacManager.add_sac(SacManager.super_sac, "max_health_-70")
+
+func sac_movement_lag():
+	movement_lag = 1
+	SacManager.add_sac(SacManager.super_sac, "max_health_-70")
