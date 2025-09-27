@@ -11,7 +11,7 @@ var current_health
 var current_stm
 var current_dmg
 var current_roll_dis
-
+var able_to_roll = true
 var input_dir: Vector2 = Vector2.ZERO
 var last_dir: Vector2 = Vector2.DOWN
 var is_rolling:= false
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		if not is_rolling and not is_attacking:
 			playidle()
 		is_moving = false
-	if Input.is_action_just_pressed("roll") and not is_rolling:
+	if Input.is_action_just_pressed("roll") and not is_rolling and able_to_roll:
 		is_rolling = true
 		await roll(last_dir)
 		is_rolling = false
@@ -51,6 +51,8 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	get_node('Camera2D/guid').current_health = current_health
 	get_node('Camera2D/guid').maxhealth = health
+	get_node('Camera2D/guid').current_stm = current_stm
+	get_node('Camera2D/guid').maxstm = stm
 
 func playwalk(dir) -> void:
 	if dir.x > 0 and dir.y == 0:
@@ -166,7 +168,14 @@ func sword_slash():
 	$animate2.visible = false
 	can_move = true
 
-
 func sac_healthui():
 	get_node('Camera2D/guid/HBoxContainer/health').visible = false
-	
+	SacManager.add_sac(SacManager.inter_sac, "health_ui_gone")
+
+func sac_stmui():
+	get_node('Camera2D/guid/HBoxContainer/stm').visible = false
+	SacManager.add_sac(SacManager.inter_sac, "stm_ui_gone")
+
+func sac_roll():
+	able_to_roll = false
+	SacManager.add_sac(SacManager.adv_sac, "roll_gone")

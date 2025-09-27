@@ -1,3 +1,4 @@
+ColorRect
 VBoxContainer
 HBoxContainer
 ProgressBar
@@ -12,4 +13,3 @@ TileMap
 CharacterBody2D
 MeshInstance3D
 GridMap
-StaticBody3D
