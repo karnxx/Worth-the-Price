@@ -5,4 +5,3 @@ func get_dmged(dmg):
 	health -= dmg
 	if health <= 0:
 		queue_free()
-		print('asd')

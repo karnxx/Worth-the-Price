@@ -177,6 +177,7 @@ func sword_slash():
 		var colliders = [$attack/left,$attack/bottomleft,$attack/down]
 		for i in colliders:
 			if i.is_colliding():
+				print("eyfdyghb")
 				if i.get_collider().has_method('get_dmged'):
 					i.get_collider().get_dmged(current_dmg)
 	elif facing == "right" or facing =="bottomright":

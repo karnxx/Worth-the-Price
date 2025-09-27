@@ -196,43 +196,50 @@ shape = SubResource("CircleShape2D_iivyv")
 zoom = Vector2(3, 3)
 
 [node name="guid" parent="Camera2D" instance=ExtResource("7_paua2")]
+visible = false
 
 [node name="attack" type="Node2D" parent="."]
 
 [node name="down" type="RayCast2D" parent="attack"]
-position = Vector2(0, 11)
-target_position = Vector2(0, 18)
+target_position = Vector2(0, 25)
+collision_mask = 8
 
 [node name="up" type="RayCast2D" parent="attack"]
-position = Vector2(0, -10)
-target_position = Vector2(0, -18)
+position = Vector2(0, -2)
+target_position = Vector2(0, -25)
+collision_mask = 8
 
 [node name="left" type="RayCast2D" parent="attack"]
-position = Vector2(-11, 0)
+position = Vector2(-1, 0)
 rotation = 1.5708
-target_position = Vector2(0, 18)
+target_position = Vector2(-0.999902, 27)
+collision_mask = 8
 
 [node name="right" type="RayCast2D" parent="attack"]
-position = Vector2(12, 0)
 rotation = 1.5708
-target_position = Vector2(0, -18)
+target_position = Vector2(-9.77397e-05, -27)
+collision_mask = 8
 
 [node name="bottomright" type="RayCast2D" parent="attack"]
-position = Vector2(9, 8)
+position = Vector2(1, 1)
 rotation = -0.785398
-target_position = Vector2(0, 18)
+target_position = Vector2(-0.707101, 28.9914)
+collision_mask = 8
 
 [node name="topright" type="RayCast2D" parent="attack"]
-position = Vector2(-8, -8)
+position = Vector2(-1, -1)
 rotation = -0.785398
-target_position = Vector2(0, -18)
+target_position = Vector2(-0.707112, -27.5772)
+collision_mask = 8
 
 [node name="bottomleft" type="RayCast2D" parent="attack"]
-position = Vector2(-9, 8)
+position = Vector2(-1, 1)
 rotation = 0.785398
-target_position = Vector2(0, 18)
+target_position = Vector2(-0.707112, 27.5772)
+collision_mask = 8
 
 [node name="topleft" type="RayCast2D" parent="attack"]
-position = Vector2(10, -7)
+position = Vector2(1, -1)
 rotation = 0.785398
-target_position = Vector2(0, -18)
+target_position = Vector2(5.48363e-06, -29.6985)
+collision_mask = 8
