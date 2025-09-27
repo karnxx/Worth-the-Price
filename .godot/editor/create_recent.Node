@@ -1,7 +1,8 @@
+ColorRect
+Label
 Marker2D
 Node2D
 TextureRect
-ColorRect
 VBoxContainer
 HBoxContainer
 CollisionShape2D
@@ -11,5 +12,3 @@ CharacterBody2D
 ProgressBar
 TextEdit
 HSlider
-CanvasLayer
-CanvasGroup

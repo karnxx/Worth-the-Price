@@ -7,7 +7,9 @@ var caniframe := true
 @export var speed: float = 150.0
 @export var roll_dis: int = 100
 @export var time_between_atk := 0.5
+
 var facing
+var stm_loss := stm / 3.5
 var current_health
 var current_stm
 var current_dmg
@@ -20,47 +22,50 @@ var is_moving:= false
 var is_attacking := false
 var can_move :=true
 var movement_lag = 0.0
-var crackedsprite = true
+var crackedsprite = false
 func _ready():
 	current_health = health
 	current_stm = stm
 	current_dmg = dmg
 	current_roll_dis = roll_dis
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	
-	if input_dir != Vector2.ZERO and can_move:
-		if movement_lag != 0:
-			await get_tree().create_timer(movement_lag).timeout
-		velocity = input_dir.normalized() * speed
-		last_dir = input_dir
-		if not is_rolling and not is_attacking:
-			playwalk(input_dir)
-		is_moving = true
-	else:
-		velocity = Vector2.ZERO
-		if not is_rolling and not is_attacking:
-			playidle()
-		is_moving = false
-	if Input.is_action_just_pressed("roll") and not is_rolling and able_to_roll:
-		if movement_lag != 0:
-			await get_tree().create_timer(movement_lag).timeout
-		is_rolling = true
-		await roll(last_dir)
-		is_rolling = false
-	if Input.is_action_just_pressed("accept"):
-		if not is_rolling and not is_attacking:
+	if not is_rolling and not is_attacking:
+		if input_dir != Vector2.ZERO:
 			if movement_lag != 0:
 				await get_tree().create_timer(movement_lag).timeout
-			sword_slash()
+			velocity = input_dir.normalized() * speed
+			last_dir = input_dir
+			playwalk(input_dir)
+			is_moving = true
+		else:
+			velocity = Vector2.ZERO
+			playidle()
+			is_moving = false
+	if Input.is_action_just_pressed("roll") and able_to_roll and not is_rolling:
+		if movement_lag != 0:
+			await get_tree().create_timer(movement_lag).timeout
+		await roll(last_dir)
+	if Input.is_action_just_pressed("accept") and not is_rolling and not is_attacking:
+		if movement_lag != 0:
+			await get_tree().create_timer(movement_lag).timeout
+		sword_slash()
 	move_and_slide()
 
+
 func _process(_delta: float) -> void:
+	if current_stm < stm_loss :
+		able_to_roll = false
+	else:
+		able_to_roll = true
 	get_node('Camera2D/guid').current_health = current_health
 	get_node('Camera2D/guid').maxhealth = health
 	get_node('Camera2D/guid').current_stm = current_stm
 	get_node('Camera2D/guid').maxstm = stm
+	
+	if current_stm != stm:
+		current_stm = current_stm + 0.05
 
 func playwalk(dir) -> void:
 	if crackedsprite:
@@ -134,12 +139,17 @@ func playrol(dir) -> void:
 			$animate.play("roll_downleft")
 
 func roll(dir) -> void:
-	can_move =false
+	can_move = false
+	is_rolling = true
 	playrol(dir)
-	var tween = create_tween()
-	tween.tween_property(self, "global_position", global_position + (dir.normalized() * roll_dis), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	await tween.finished
+	var roll_duration = 0.3
+	var roll_speed = roll_dis / roll_duration
+	velocity = dir.normalized() * roll_speed
+	current_stm -= stm_loss
+	await get_tree().create_timer(roll_duration).timeout
+	velocity = Vector2.ZERO
 	can_move = true
+	is_rolling = false
 
 func sword_slash():
 	can_move = false
