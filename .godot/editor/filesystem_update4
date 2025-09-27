@@ -5,3 +5,4 @@ res://scene/lvl/lvl_1.tscn
 res://scene/uis/guid.tscn
 res://scene/char/enemies/fireball_man.tscn
 res://scene/lvl/lvl_1.gd
+res://scene/char/enemies/fireball_man.gd

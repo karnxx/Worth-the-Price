@@ -153,6 +153,7 @@ func roll(dir) -> void:
 
 func sword_slash():
 	can_move = false
+	velocity = Vector2.ZERO
 	$animate2.visible = true
 	if facing == "up" or facing =="topright":
 		if crackedsprite:

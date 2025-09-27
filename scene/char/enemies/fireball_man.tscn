@@ -1,6 +1,7 @@
-[gd_scene load_steps=116 format=3 uid="uid://dg55tb2syh7w0"]
+[gd_scene load_steps=117 format=3 uid="uid://dg55tb2syh7w0"]
 
 [ext_resource type="Texture2D" uid="uid://it27altct334" path="res://assets/char/enemy/fireball_guy/down_run.png" id="1_doxay"]
+[ext_resource type="Script" uid="uid://ca34c7cxugcbl" path="res://scene/char/enemies/fireball_man.gd" id="1_w05gc"]
 [ext_resource type="Texture2D" uid="uid://e07ironj5v7x" path="res://assets/char/enemy/fireball_guy/down_shoot.png" id="2_w05gc"]
 [ext_resource type="Texture2D" uid="uid://bx6ycw1rn5m0q" path="res://assets/char/enemy/fireball_guy/left_down_run.png" id="3_brryj"]
 [ext_resource type="Texture2D" uid="uid://blap5gf2sa26d" path="res://assets/char/enemy/fireball_guy/left_down_shoot.png" id="4_7l5lt"]
@@ -780,6 +781,7 @@ radius = 34.0
 height = 68.0
 
 [node name="Fireball_man" type="CharacterBody2D"]
+script = ExtResource("1_w05gc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
