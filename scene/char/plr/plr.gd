@@ -44,10 +44,9 @@ func _physics_process(delta: float) -> void:
 			playidle()
 			is_moving = false
 	if Input.is_action_just_pressed("roll") and able_to_roll and not is_rolling:
+		$"../audio/dash".play()
 		if movement_lag != 0:
 			await get_tree().create_timer(movement_lag).timeout
-			$AudioStreamPlayer.stream = preload("res://assets/whoosh-velocity-383019.mp3")
-			$AudioStreamPlayer.play()
 		await roll(last_dir)
 	if Input.is_action_just_pressed("accept") and not is_rolling and not is_attacking:
 		if movement_lag != 0:
@@ -65,9 +64,6 @@ func _process(_delta: float) -> void:
 	get_node('Camera2D/guid').maxhealth = health
 	get_node('Camera2D/guid').current_stm = current_stm
 	get_node('Camera2D/guid').maxstm = stm
-	if is_moving:
-		$AudioStreamPlayer.stream = preload("res://assets/footsteps-108047 (mp3cut.net).mp3")
-		$AudioStreamPlayer.play()
 	if current_stm != stm:
 		current_stm = current_stm + 0.05
 
@@ -182,8 +178,6 @@ func sword_slash():
 	}
 
 	
-	$AudioStreamPlayer.stream = preload("res://assets/clean-fast-swooshaiff-14784.mp3")
-	$AudioStreamPlayer.play()
 	$animate2.play(dir)
 	$animate2.z_index = 100
 

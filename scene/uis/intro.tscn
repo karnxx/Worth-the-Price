@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddu0raf0ma6bb"]
+[gd_scene load_steps=27 format=3 uid="uid://ddu0raf0ma6bb"]
 
+[ext_resource type="Script" uid="uid://b07usjcacj065" path="res://scene/scipts/intro.gd" id="1_cgxax"]
 [ext_resource type="Texture2D" uid="uid://cunlvt5tupv6p" path="res://assets/world/Intro_bg/1.png" id="1_diudh"]
 [ext_resource type="Texture2D" uid="uid://5ckqy2jgnoe3" path="res://assets/world/Intro_bg/2.png" id="2_lbqsn"]
 [ext_resource type="Texture2D" uid="uid://kanhxubupw1m" path="res://assets/world/Intro_bg/3.png" id="3_r7vr3"]
@@ -8,41 +9,401 @@
 [ext_resource type="Texture2D" uid="uid://c43l3dayb1yk6" path="res://assets/world/Intro_bg/6.png" id="6_7w37e"]
 [ext_resource type="Texture2D" uid="uid://b5uu7r72e8ns8" path="res://assets/world/Intro_bg/7.png" id="7_olpgl"]
 [ext_resource type="Texture2D" uid="uid://cp3ert0dg3lc0" path="res://assets/world/Intro_bg/0.png" id="8_qlaeq"]
+[ext_resource type="Texture2D" uid="uid://db4ooppix2kum" path="res://scene/uis/pfpMeoth.png" id="9_8t1un"]
+[ext_resource type="Texture2D" uid="uid://h6keidhgw67k" path="res://scene/uis/me.jpg" id="10_7n1sk"]
+[ext_resource type="Texture2D" uid="uid://dcdt5gxgybe31" path="res://assets/Worth-the-Price-9-27-2025.png" id="10_t033a"]
+[ext_resource type="FontFile" uid="uid://dep1sjw7y40em" path="res://assets/Fonts/BoldPixels1.4.ttf" id="11_j3whr"]
+[ext_resource type="FontFile" uid="uid://c2ljam3m5dgfe" path="res://assets/Fonts/Sddystopiandemo-GO7xa.otf" id="12_1itsu"]
+[ext_resource type="Texture2D" uid="uid://bocwgtsmnj5nn" path="res://scene/uis/daydream_banner.png" id="13_xfpc6"]
+[ext_resource type="Texture2D" uid="uid://d0n77gk15m1lh" path="res://icon.svg" id="14_cgxax"]
+[ext_resource type="Texture2D" uid="uid://7d5odxcshbic" path="res://scene/uis/Start-Game.png" id="17_x2lfa"]
+[ext_resource type="Texture2D" uid="uid://bovupsujfg0o6" path="res://assets/char/plr/Character/right_idle.png" id="18_tpmdo"]
+[ext_resource type="AudioStream" uid="uid://36dtmmgcvn46" path="res://assets/game-gaming-minecraft-background-music-377647.mp3" id="19_6wp15"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgxax"]
+size = Vector2(974.506, 115.968)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjo6d"]
+atlas = ExtResource("18_tpmdo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlpw3"]
+atlas = ExtResource("18_tpmdo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6mhco"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjo6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlpw3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_t033a"]
+resource_name = "intro"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main stuf/PfpMeoth:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main stuf:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ColorRect:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-12, -8), Vector2(-19, -1199)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Worth-the-price-9-27-2025:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(957, 1004), Vector2(957, 135)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Worth-the-price-9-27-2025:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(3.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.8, 1.8)]
+}
+
+[sub_resource type="Animation" id="Animation_x2lfa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main stuf/PfpMeoth:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main stuf:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ColorRect:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, -8)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Worth-the-price-9-27-2025:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(957, 1004)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Worth-the-price-9-27-2025:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tpmdo"]
+_data = {
+&"RESET": SubResource("Animation_x2lfa"),
+&"intro": SubResource("Animation_t033a")
+}
+
+[node name="intro" type="Node2D"]
+script = ExtResource("1_cgxax")
 
 [node name="bg" type="Node2D" parent="."]
-position = Vector2(-1240, -646)
-scale = Vector2(3.3, 3.3)
+position = Vector2(-2119, -1034)
+scale = Vector2(5.5, 5.5)
 
 [node name="1" type="Sprite2D" parent="bg"]
+texture_filter = 1
 position = Vector2(554, 293)
 texture = ExtResource("1_diudh")
 
 [node name="2" type="Sprite2D" parent="bg"]
+texture_filter = 1
 position = Vector2(554, 293)
 texture = ExtResource("2_lbqsn")
 
 [node name="3" type="Sprite2D" parent="bg"]
+texture_filter = 1
 position = Vector2(554, 293)
 texture = ExtResource("3_r7vr3")
 
 [node name="4" type="Sprite2D" parent="bg"]
+texture_filter = 1
 position = Vector2(554, 293)
 texture = ExtResource("4_u8qfl")
 
 [node name="5" type="Sprite2D" parent="bg"]
+texture_filter = 1
 position = Vector2(554, 293)
 texture = ExtResource("5_ugdp1")
 
 [node name="6" type="Sprite2D" parent="bg"]
+texture_filter = 1
 position = Vector2(554, 293)
 texture = ExtResource("6_7w37e")
 
 [node name="7" type="Sprite2D" parent="bg"]
+texture_filter = 1
 position = Vector2(554, 293)
 texture = ExtResource("7_olpgl")
 
 [node name="0" type="Sprite2D" parent="bg"]
-position = Vector2(554, 293)
+texture_filter = 1
+position = Vector2(558.868, 287.547)
 texture = ExtResource("8_qlaeq")
+
+[node name="Start-game" type="Sprite2D" parent="."]
+position = Vector2(1306, 603)
+rotation = 0.23911
+scale = Vector2(1, 1)
+texture = ExtResource("17_x2lfa")
+
+[node name="Area2D" type="Area2D" parent="Start-game"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Start-game/Area2D"]
+position = Vector2(-12.0598, -15.6422)
+shape = SubResource("RectangleShape2D_cgxax")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(290, 587)
+scale = Vector2(35, 35)
+sprite_frames = SubResource("SpriteFrames_6mhco")
+autoplay = "default"
+frame_progress = 0.300126
+
+[node name="Worth-the-price-9-27-2025" type="Sprite2D" parent="."]
+position = Vector2(957, 1004)
+texture = ExtResource("10_t033a")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -8.0
+offset_right = 1969.0
+offset_bottom = 1144.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="main stuf" type="Node2D" parent="."]
+position = Vector2(-12, -8)
+
+[node name="Me" type="Sprite2D" parent="main stuf"]
+position = Vector2(1525, 700)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_7n1sk")
+
+[node name="collab" type="Label" parent="main stuf"]
+offset_left = 115.0
+offset_top = 14.0
+offset_right = 2164.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("11_j3whr")
+theme_override_font_sizes/font_size = 100
+text = "A Scat Studios and Karnx Studios Collab"
+
+[node name="scat" type="Label" parent="main stuf"]
+offset_left = 229.0
+offset_top = 973.0
+offset_right = 728.0
+offset_bottom = 1081.0
+theme_override_fonts/font = ExtResource("12_1itsu")
+theme_override_font_sizes/font_size = 80
+text = "scat-studios"
+
+[node name="scat2" type="Label" parent="main stuf"]
+offset_left = 1287.0
+offset_top = 975.0
+offset_right = 1786.0
+offset_bottom = 1083.0
+theme_override_fonts/font = ExtResource("12_1itsu")
+theme_override_font_sizes/font_size = 80
+text = "scat-studios"
+
+[node name="Label" type="Label" parent="main stuf"]
+offset_left = 1311.0
+offset_top = 171.0
+offset_right = 1368.0
+offset_bottom = 308.0
+theme_override_font_sizes/font_size = 100
+text = "+"
+
+[node name="DaydreamBanner" type="Sprite2D" parent="main stuf"]
+position = Vector2(787, 240)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("13_xfpc6")
+
+[node name="Icon" type="Sprite2D" parent="main stuf"]
+position = Vector2(1523, 245)
+scale = Vector2(2, 2)
+texture = ExtResource("14_cgxax")
+
+[node name="PfpMeoth" type="Sprite2D" parent="main stuf"]
+position = Vector2(490, 701)
+scale = Vector2(2, 2)
+texture = ExtResource("9_8t1un")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -10.0
+offset_right = 32.0
+offset_bottom = 30.0
+scale = Vector2(50.835, 28.2671)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tpmdo")
+}
+autoplay = "intro"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_6wp15")
+
+[connection signal="mouse_entered" from="Start-game/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Start-game/Area2D" to="." method="_on_area_2d_mouse_exited"]

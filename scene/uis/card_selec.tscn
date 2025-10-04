@@ -45,6 +45,7 @@ offset_bottom = 986.0
 theme_override_font_sizes/font_size = 40
 
 [node name="Button" type="Button" parent="HBoxContainer/Panel2"]
+layout_mode = 0
 offset_left = 72.0
 offset_top = 39.0
 offset_right = 572.0
@@ -63,6 +64,7 @@ offset_bottom = 986.0
 theme_override_font_sizes/font_size = 40
 
 [node name="Button" type="Button" parent="HBoxContainer/Panel3"]
+layout_mode = 0
 offset_left = 72.0
 offset_top = 39.0
 offset_right = 572.0
